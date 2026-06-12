@@ -1,10 +1,14 @@
 
 from django.urls import path
+from . import views
+
  
-#   accounts/register/        → Registration form
-#   accounts/verify-otp/      → OTP entry form
-#   accounts/resend-otp/      → Resend OTP
-#   accounts/login/           → Login form
-#   accounts/logout/          → Logout
+
  
-urlpatterns = []
+urlpatterns = [
+    path("register/", views.register_view, name="register"),
+    path("verify-otp/", views.verify_otp_view, name="verify_otp"),
+    path("resend-otp/", views.resend_otp_view, name="resend_otp"),
+    path("login/", views.login_view, name="login"),
+    path("logout/", views.logout_view, name="logout")
+]

@@ -1,9 +1,8 @@
 
 from django.urls import path
+from . import views
  
-#   /                         → Home / landing page
-#   vote/                     → Voting page (shows candidates)
-#   vote/confirm/             → Vote confirmation
-#   results/                  → Published results page
+urlpatterns = [
+    path("vote/", views.vote_view, name="vote"),
+]
  
-urlpatterns = []

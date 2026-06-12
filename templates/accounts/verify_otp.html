@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block title %}Verify Email — CampusVote{% endblock %}
+
+{% block content %}
+<h1>Verify Your Email</h1>
+<p>We sent a 4-digit code to <strong>{{ user_email }}</strong></p>
+
+<form method="post">
+    {% csrf_token %}
+
+    <div>
+        <label for="{{ form.code.id_for_label }}">Enter OTP</label>
+        <input
+            type="text"
+            name="{{ form.code.name }}"
+            id="{{ form.code.id_for_label }}"
+            maxlength="4"
+            placeholder="0000"
+            autocomplete="one-time-code"
+            inputmode="numeric"
+            required
+        >
+        {{ form.code.errors }}
+    </div>
+
+    <button type="submit">Verify</button>
+</form>
+
+<form method="post" action="{% url 'resend_otp' %}">
+    {% csrf_token %}
+    <button type="submit">Resend OTP</button>
+</form>
+{% endblock %}
