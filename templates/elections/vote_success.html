@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+{% block title %}Vote Cast — CampusVote{% endblock %}
+
+{% block content %}
+<h1>Thank you for voting!</h1>
+<p>Your vote has been recorded successfully.</p>
+<a href="{% url 'results' %}">View Results</a>
+{% endblock %}

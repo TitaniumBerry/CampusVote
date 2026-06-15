@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block title %}Results — CampusVote{% endblock %}
+
+{% block content %}
+<h1>Election Results</h1>
+<h2>{{ election.title }}</h2>
+
+<section>
+    <h3>President</h3>
+    {% for result in president_results %}
+    <div>
+        <p>
+            {{ result.candidate.name }} — {{ result.displayed_vote_count }} votes
+            {% if result.is_winner %}<strong>(Winner)</strong>{% endif %}
+        </p>
+    </div>
+    {% empty %}
+    <p>No results available.</p>
+    {% endfor %}
+</section>
+
+<section>
+    <h3>General Secretary</h3>
+    {% for result in gensec_results %}
+    <div>
+        <p>
+            {{ result.candidate.name }} — {{ result.displayed_vote_count }} votes
+            {% if result.is_winner %}<strong>(Winner)</strong>{% endif %}
+        </p>
+    </div>
+    {% empty %}
+    <p>No results available.</p>
+    {% endfor %}
+</section>
+{% endblock %}
