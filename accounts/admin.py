@@ -1,6 +1,24 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
+from django.db import transaction
 from .models import User, OTPVerification
+
+
+
+@admin.action(description="Reset user votes for selected users(allow revotes)")
+def reset_user_votes(ModelAdmin, request, queryset):
+    from elections.models import Vote
+
+    with transaction.atomic():
+        deleted_count, _ = Vote.objects.filter(voter__in=queryset).delete()
+        updated_count = queryset.update(has_voted_president= False, has_voted_gensec = False)
+    
+    ModelAdmin.message_user(
+        request,
+        f"Reset {updated_count} user(s) - deleted {deleted_count} vote(s). They can vote again"
+    )
+
+
 
 
 @admin.register(User)
@@ -23,7 +41,7 @@ class UserAdmin(BaseUserAdmin):
         }),
     )
 
-
+    actions = [reset_user_votes]
 
     add_fieldsets = BaseUserAdmin.add_fieldsets + (
         ("BITS Profile", {
@@ -41,4 +59,5 @@ class OTPVerificationAdmin(admin.ModelAdmin):
         return obj.is_expired()
     is_expired.boolean = True  # Shows a green/red icon instead of True/False
     is_expired.short_description = "Expired?"
+
 
