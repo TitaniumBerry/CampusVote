@@ -106,6 +106,8 @@ EMAIL_HOST_USER = os.getenv("EMAIL_HOST_USER")
 EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD")
 DEFAULT_FROM_EMAIL = f"CampusVote <{os.getenv('EMAIL_HOST_USER')}>"
 
+EMAIL_TIMEOUT = 10  # seconds — fail fast instead of hanging for 30s
+
 
 # ─── Domain allowlist ─────────────────────────────────────────────────────────
 

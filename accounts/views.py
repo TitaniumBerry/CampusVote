@@ -39,23 +39,15 @@ def register_view(request):
         form = RegistrationForm(request.POST)
         if form.is_valid():
             user = form.save()
-
-
             otp = OTPVerification.generate_for(user)
-            send_otp_email(user, otp)
 
-            send_mail(
-                "Welcome to CampusVote",
-                f"Hi {user.first_name},\n\nYour account has been created successfully.\n"
-                f"Please verify your email using the OTP we just sent.\n\nTeam CampusVote",
-                settings.DEFAULT_FROM_EMAIL,
-                [user.email],
-                fail_silently=True,
-            )
+            try:
+                send_otp_email(user, otp)
+            except Exception:
+                messages.warning(request, "Account created but we couldn't send the OTP email. Use 'Resend OTP' on the next page.")
 
             request.session["pending_user_id"] = user.id
-
-            messages.success(request, "Account created, Check email for otp")
+            messages.success(request, "Account created! Check your email for the OTP.")
             return redirect("verify_otp")
         
     else:
