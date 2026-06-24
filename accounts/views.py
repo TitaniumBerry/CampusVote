@@ -28,6 +28,9 @@ def send_otp_email(user, otp):
 
     )
 
+
+
+
 def register_view(request):
     if request.user.is_authenticated and request.user.is_verified:
         return redirect("vote")
@@ -40,6 +43,15 @@ def register_view(request):
 
             otp = OTPVerification.generate_for(user)
             send_otp_email(user, otp)
+
+            send_mail(
+                "Welcome to CampusVote",
+                f"Hi {user.first_name},\n\nYour account has been created successfully.\n"
+                f"Please verify your email using the OTP we just sent.\n\nTeam CampusVote",
+                settings.DEFAULT_FROM_EMAIL,
+                [user.email],
+                fail_silently=True,
+            )
 
             request.session["pending_user_id"] = user.id
 
