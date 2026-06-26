@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}CampusVote — BITS Pilani{% endblock %}
+
+{% block content %}
+<div class="card" style="text-align: center;">
+    <p class="home-eyebrow">BITS Pilani</p>
+    <h1 class="home-title">CampusVote</h1>
+    <p class="home-desc">The official platform for student body elections. Secure, simple, one vote per student.</p>
+
+    <div class="home-actions">
+        <a href="{% url 'login' %}" class="home-btn home-btn--primary">Login</a>
+        <a href="{% url 'register' %}" class="home-btn home-btn--ghost">Register</a>
+    </div>
+</div>
+{% endblock %}

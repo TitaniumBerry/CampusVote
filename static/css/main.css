@@ -569,3 +569,69 @@ form button[type="submit"]:hover {
     font-size: 1.6rem;
   }
 }
+
+
+/* ── Homepage ─────────────────────────────────────────────────────────────── */
+ 
+.home-eyebrow {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--primary);
+  margin-bottom: 0.75rem;
+  margin-top: 0;
+}
+ 
+.home-title {
+  font-size: 2.6rem;
+  margin-bottom: 1rem;
+  color: var(--heading);
+}
+ 
+.home-desc {
+  font-size: 0.92rem;
+  color: var(--text-muted);
+  max-width: 320px;
+  margin: 0 auto 2rem;
+  line-height: 1.7;
+}
+ 
+.home-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+ 
+.home-btn {
+  display: block;
+  padding: 0.75rem 1.25rem;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background 0.15s, border-color 0.15s;
+}
+ 
+.home-btn--primary {
+  background: var(--primary);
+  color: #fff;
+}
+ 
+.home-btn--primary:hover {
+  background: var(--primary-dim);
+  text-decoration: none;
+}
+ 
+.home-btn--ghost {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+}
+ 
+.home-btn--ghost:hover {
+  border-color: var(--text-muted);
+  color: var(--text);
+  text-decoration: none;
+}
+ 

@@ -190,3 +190,8 @@ def results_view(request):
 
 
  
+def home_view(request):
+    """Landing page — shown to unauthenticated users."""
+    if request.user.is_authenticated:
+        return redirect("vote")
+    return render(request, "home.html")
