@@ -104,7 +104,7 @@ if os.getenv("RESEND_API_KEY"):
     ANYMAIL = {
         "RESEND_API_KEY": os.getenv("RESEND_API_KEY"),
     }
-    DEFAULT_FROM_EMAIL = "CampusVote <onboarding@resend.dev>"
+    DEFAULT_FROM_EMAIL = "CampusVote <f20251320@pilani.bits-pilani.ac.in>"
 else:
     EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
     EMAIL_HOST = os.getenv("EMAIL_HOST", "smtp.gmail.com")
