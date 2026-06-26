@@ -1,0 +1,571 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@400;500;600&display=swap');
+
+/* ── Reset & Base ─────────────────────────────────────────────────────────── */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --bg:        #0a0a0a;
+  --surface:   #111111;
+  --surface-2: #1a1a1a;
+  --border:    #222222;
+  --primary:   #CB2957;
+  --primary-dim: #a0203f;
+  --text:      #DDDDDD;
+  --text-muted:#888888;
+  --heading:   #EEEEEE;
+  --error:     #e05555;
+  --success:   #4caf7d;
+  --warning:   #e09a3a;
+}
+
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+/* ── Typography ───────────────────────────────────────────────────────────── */
+
+h1, h2, h3 {
+  font-family: 'DM Serif Display', Georgia, serif;
+  color: var(--heading);
+  line-height: 1.2;
+  font-weight: 400;
+}
+
+h1 { font-size: 2rem; }
+h2 { font-size: 1.4rem; }
+h3 { font-size: 1.1rem; }
+
+p {
+  color: var(--text-muted);
+  margin-top: 0.4rem;
+}
+
+a {
+  color: var(--primary);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+strong {
+  color: var(--heading);
+  font-weight: 600;
+}
+
+/* ── Layout ───────────────────────────────────────────────────────────────── */
+
+.page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1rem;
+}
+
+.page--wide {
+  justify-content: flex-start;
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 2.5rem;
+  width: 100%;
+  max-width: 440px;
+}
+
+.card--wide {
+  max-width: 680px;
+}
+
+.card__title {
+  margin-bottom: 0.25rem;
+}
+
+.card__subtitle {
+  margin-bottom: 2rem;
+  font-size: 0.9rem;
+}
+
+/* ── Messages (Django flash messages) ─────────────────────────────────────── */
+
+.messages {
+  list-style: none;
+  width: 100%;
+  max-width: 440px;
+  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.messages li {
+  padding: 0.75rem 1rem;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  border-left: 3px solid;
+}
+
+.messages .success {
+  background: rgba(76, 175, 125, 0.08);
+  border-color: var(--success);
+  color: var(--success);
+}
+
+.messages .error {
+  background: rgba(224, 85, 85, 0.08);
+  border-color: var(--error);
+  color: var(--error);
+}
+
+.messages .warning {
+  background: rgba(224, 154, 58, 0.08);
+  border-color: var(--warning);
+  color: var(--warning);
+}
+
+.messages .info {
+  background: rgba(203, 41, 87, 0.08);
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+/* ── Forms ────────────────────────────────────────────────────────────────── */
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.field label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.field input[type="text"],
+.field input[type="email"],
+.field input[type="password"],
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+  width: 100%;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  color: var(--heading);
+  font-family: 'Inter', sans-serif;
+  font-size: 0.95rem;
+  padding: 0.7rem 0.9rem;
+  outline: none;
+  transition: border-color 0.15s;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus {
+  border-color: var(--primary);
+}
+
+/* Django renders inputs directly — target them without .field wrapper too */
+form div input {
+  width: 100%;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  color: var(--heading);
+  font-family: 'Inter', sans-serif;
+  font-size: 0.95rem;
+  padding: 0.7rem 0.9rem;
+  outline: none;
+  transition: border-color 0.15s;
+}
+
+form div input:focus {
+  border-color: var(--primary);
+}
+
+form div label {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 0.4rem;
+}
+
+form div {
+  margin-bottom: 1.25rem;
+}
+
+form div:last-of-type {
+  margin-bottom: 0;
+}
+
+/* Error lists from Django form validation */
+.errorlist {
+  list-style: none;
+  margin-top: 0.3rem;
+}
+
+.errorlist li {
+  font-size: 0.8rem;
+  color: var(--error);
+}
+
+ul.errorlist {
+  list-style: none;
+  margin-top: 0.3rem;
+  padding: 0;
+}
+
+ul.errorlist li {
+  font-size: 0.8rem;
+  color: var(--error);
+}
+
+/* Non-field errors */
+form > ul {
+  list-style: none;
+  padding: 0;
+  margin: 0.5rem 0;
+}
+
+form > ul li {
+  font-size: 0.85rem;
+  color: var(--error);
+  padding: 0.5rem 0.75rem;
+  background: rgba(224, 85, 85, 0.08);
+  border-left: 3px solid var(--error);
+  border-radius: 2px;
+}
+
+/* ── Buttons ──────────────────────────────────────────────────────────────── */
+
+.btn {
+  display: inline-block;
+  width: 100%;
+  padding: 0.75rem 1.25rem;
+  background: var(--primary);
+  color: #fff;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  text-align: center;
+  transition: background 0.15s;
+  margin-top: 0.5rem;
+}
+
+.btn:hover {
+  background: var(--primary-dim);
+}
+
+.btn--ghost {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  margin-top: 0.75rem;
+}
+
+.btn--ghost:hover {
+  border-color: var(--text-muted);
+  color: var(--text);
+}
+
+/* Django renders buttons directly inside forms */
+form > button[type="submit"],
+form button[type="submit"] {
+  display: block;
+  width: 100%;
+  padding: 0.75rem 1.25rem;
+  background: var(--primary);
+  color: #fff;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.15s;
+  margin-top: 1.25rem;
+}
+
+form > button[type="submit"]:hover,
+form button[type="submit"]:hover {
+  background: var(--primary-dim);
+}
+
+/* ── Footer link (login/register toggle) ──────────────────────────────────── */
+
+.footer-link {
+  text-align: center;
+  margin-top: 1.5rem;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+/* ── OTP input ────────────────────────────────────────────────────────────── */
+
+.otp-input {
+  text-align: center;
+  font-size: 2rem;
+  letter-spacing: 0.6rem;
+  font-weight: 600;
+  font-family: 'Inter', sans-serif;
+  color: var(--heading);
+}
+
+/* ── Candidate radio cards (signature element) ────────────────────────────── */
+
+.candidates {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  margin-top: 0.75rem;
+}
+
+.candidate-card {
+  position: relative;
+}
+
+.candidate-card input[type="radio"] {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.candidate-card label {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem 1.25rem;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--border);
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.95rem;
+  color: var(--text);
+  transition: border-color 0.15s, background 0.15s;
+  text-transform: none;
+  font-weight: 400;
+  letter-spacing: 0;
+  margin-bottom: 0;
+}
+
+.candidate-card label::before {
+  content: '';
+  width: 16px;
+  height: 16px;
+  min-width: 16px;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  background: var(--surface);
+  transition: background 0.15s, border-color 0.15s;
+}
+
+.candidate-card input[type="radio"]:checked + label {
+  border-left-color: var(--primary);
+  background: rgba(203, 41, 87, 0.06);
+  color: var(--heading);
+}
+
+.candidate-card input[type="radio"]:checked + label::before {
+  background: var(--primary);
+  border-color: var(--primary);
+}
+
+.candidate-card label:hover {
+  border-color: var(--text-muted);
+  border-left-color: var(--text-muted);
+}
+
+/* ── Vote section heading ─────────────────────────────────────────────────── */
+
+.vote-section {
+  margin-bottom: 2rem;
+}
+
+.vote-section h2 {
+  font-size: 0.75rem;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--primary);
+  margin-bottom: 0.75rem;
+}
+
+/* ── Already voted note ───────────────────────────────────────────────────── */
+
+.voted-note {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  margin-bottom: 2rem;
+}
+
+/* ── Results ──────────────────────────────────────────────────────────────── */
+
+.results-section {
+  margin-bottom: 2.5rem;
+}
+
+.results-section h3 {
+  font-size: 0.75rem;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--primary);
+  margin-bottom: 1rem;
+}
+
+.result-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.9rem 1.1rem;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.95rem;
+}
+
+.result-row:first-of-type {
+  border-top: 1px solid var(--border);
+}
+
+.result-row__name {
+  color: var(--heading);
+  font-weight: 500;
+}
+
+.result-row__votes {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+
+.result-row__winner {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--primary);
+  margin-left: 0.75rem;
+}
+
+/* ── Confirm summary box ──────────────────────────────────────────────────── */
+
+.confirm-box {
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 1.25rem 1.5rem;
+  margin: 1.5rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.confirm-box p {
+  color: var(--text);
+  font-size: 0.95rem;
+  margin: 0;
+}
+
+.confirm-box strong {
+  color: var(--text-muted);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 600;
+}
+
+/* ── State pages (success, already voted, no election, pending) ───────────── */
+
+.state-page {
+  text-align: center;
+  padding: 2rem;
+}
+
+.state-page h1 {
+  margin-bottom: 0.75rem;
+}
+
+.state-page p {
+  margin-bottom: 1.5rem;
+}
+
+.state-page a {
+  display: inline-block;
+  padding: 0.65rem 1.5rem;
+  background: var(--primary);
+  color: #fff;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background 0.15s;
+}
+
+.state-page a:hover {
+  background: var(--primary-dim);
+  text-decoration: none;
+}
+
+/* ── Divider ──────────────────────────────────────────────────────────────── */
+
+.divider {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 1.5rem 0;
+}
+
+/* ── Responsive ───────────────────────────────────────────────────────────── */
+
+@media (max-width: 500px) {
+  .card {
+    padding: 1.75rem 1.25rem;
+  }
+
+  h1 {
+    font-size: 1.6rem;
+  }
+}
