@@ -2,23 +2,24 @@
 {% block title %}Confirm Vote — CampusVote{% endblock %}
 
 {% block content %}
-<h1>Confirm Your Vote</h1>
-<p>Please review your selections carefully. You cannot change your vote after submitting.</p>
+<div class="card">
+    <h1 class="card__title">Confirm your vote</h1>
+    <p class="card__subtitle">Review carefully — you cannot change this after submitting.</p>
 
-<div>
-    {% if president_candidate %}
-    <p><strong>President:</strong> {{ president_candidate.name }}</p>
-    {% endif %}
+    <div class="confirm-box">
+        {% if president_candidate %}
+        <p><strong>President</strong><br>{{ president_candidate.name }}</p>
+        {% endif %}
+        {% if gensec_candidate %}
+        <p><strong>General Secretary</strong><br>{{ gensec_candidate.name }}</p>
+        {% endif %}
+    </div>
 
-    {% if gensec_candidate %}
-    <p><strong>General Secretary:</strong> {{ gensec_candidate.name }}</p>
-    {% endif %}
+    <form method="post" action="{% url 'cast_vote' %}">
+        {% csrf_token %}
+        <button type="submit">Confirm & submit vote</button>
+    </form>
+
+    <p class="footer-link"><a href="{% url 'vote' %}">Go back and change</a></p>
 </div>
-
-<form method="post" action="{% url 'cast_vote' %}">
-    {% csrf_token %}
-    <button type="submit">Confirm & Submit Vote</button>
-</form>
-
-<a href="{% url 'vote' %}">Go back and change</a>
 {% endblock %}

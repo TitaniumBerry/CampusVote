@@ -1,65 +1,67 @@
 {% extends "base.html" %}
 {% block title %}Register — CampusVote{% endblock %}
- 
+
 {% block content %}
-<h1>Create Account</h1>
-<p>Register with your BITS Pilani email to vote</p>
- 
-<form method="post">
-    {% csrf_token %}
- 
-    <div>
-        <label for="{{ form.first_name.id_for_label }}">First Name</label>
-        {{ form.first_name }}
-        {{ form.first_name.errors }}
-    </div>
- 
-    <div>
-        <label for="{{ form.last_name.id_for_label }}">Last Name</label>
-        {{ form.last_name }}
-        {{ form.last_name.errors }}
-    </div>
- 
-    <div>
-        <label for="{{ form.email.id_for_label }}">College Email</label>
-        {{ form.email }}
-        {{ form.email.errors }}
-    </div>
- 
-    <div>
-        <label for="{{ form.hostel.id_for_label }}">Hostel</label>
-        {{ form.hostel }}
-        {{ form.hostel.errors }}
-    </div>
- 
-    <div>
-        <label for="{{ form.room_number.id_for_label }}">Room Number</label>
-        {{ form.room_number }}
-        {{ form.room_number.errors }}
-    </div>
- 
-    <div>
-        <label for="{{ form.password.id_for_label }}">Password</label>
-        {{ form.password }}
-        {{ form.password.errors }}
-    </div>
- 
-    <div>
-        <label for="{{ form.confirm_password.id_for_label }}">Confirm Password</label>
-        {{ form.confirm_password }}
-        {{ form.confirm_password.errors }}
-    </div>
- 
-    {% if form.non_field_errors %}
-        <ul>
-            {% for error in form.non_field_errors %}
-                <li>{{ error }}</li>
-            {% endfor %}
-        </ul>
-    {% endif %}
- 
-    <button type="submit">Register</button>
-</form>
- 
-<p>Already have an account? <a href="{% url 'login' %}">Login</a></p>
+<div class="card">
+    <h1 class="card__title">Create account</h1>
+    <p class="card__subtitle">Register with your BITS Pilani email to vote</p>
+
+    <form method="post">
+        {% csrf_token %}
+
+        <div>
+            <label for="{{ form.first_name.id_for_label }}">First Name</label>
+            {{ form.first_name }}
+            {{ form.first_name.errors }}
+        </div>
+
+        <div>
+            <label for="{{ form.last_name.id_for_label }}">Last Name</label>
+            {{ form.last_name }}
+            {{ form.last_name.errors }}
+        </div>
+
+        <div>
+            <label for="{{ form.email.id_for_label }}">College Email</label>
+            {{ form.email }}
+            {{ form.email.errors }}
+        </div>
+
+        <div>
+            <label for="{{ form.hostel.id_for_label }}">Hostel</label>
+            {{ form.hostel }}
+            {{ form.hostel.errors }}
+        </div>
+
+        <div>
+            <label for="{{ form.room_number.id_for_label }}">Room Number</label>
+            {{ form.room_number }}
+            {{ form.room_number.errors }}
+        </div>
+
+        <div>
+            <label for="{{ form.password.id_for_label }}">Password</label>
+            {{ form.password }}
+            {{ form.password.errors }}
+        </div>
+
+        <div>
+            <label for="{{ form.confirm_password.id_for_label }}">Confirm Password</label>
+            {{ form.confirm_password }}
+            {{ form.confirm_password.errors }}
+        </div>
+
+        {% if form.non_field_errors %}
+            <ul>
+                {% for error in form.non_field_errors %}
+                    <li>{{ error }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+        <button type="submit">Create account</button>
+    </form>
+
+    <p class="footer-link">Already have an account? <a href="{% url 'login' %}">Login</a></p>
+</div>
 {% endblock %}

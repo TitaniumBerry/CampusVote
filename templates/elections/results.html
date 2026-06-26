@@ -1,35 +1,43 @@
 {% extends "base.html" %}
 {% block title %}Results — CampusVote{% endblock %}
 
-{% block content %}
-<h1>Election Results</h1>
-<h2>{{ election.title }}</h2>
+{% block page %}
+<div class="page page--wide">
+    <div class="card card--wide">
+        <h1 class="card__title">Election Results</h1>
+        <p class="card__subtitle">{{ election.title }}</p>
 
-<section>
-    <h3>President</h3>
-    {% for result in president_results %}
-    <div>
-        <p>
-            {{ result.candidate.name }} — {{ result.displayed_vote_count }} votes
-            {% if result.is_winner %}<strong>(Winner)</strong>{% endif %}
-        </p>
-    </div>
-    {% empty %}
-    <p>No results available.</p>
-    {% endfor %}
-</section>
+        <hr class="divider">
 
-<section>
-    <h3>General Secretary</h3>
-    {% for result in gensec_results %}
-    <div>
-        <p>
-            {{ result.candidate.name }} — {{ result.displayed_vote_count }} votes
-            {% if result.is_winner %}<strong>(Winner)</strong>{% endif %}
-        </p>
+        <div class="results-section">
+            <h3>President</h3>
+            {% for result in president_results %}
+            <div class="result-row">
+                <span class="result-row__name">
+                    {{ result.candidate.name }}
+                    {% if result.is_winner %}<span class="result-row__winner">Winner</span>{% endif %}
+                </span>
+                <span class="result-row__votes">{{ result.displayed_vote_count }} votes</span>
+            </div>
+            {% empty %}
+            <p>No results available.</p>
+            {% endfor %}
+        </div>
+
+        <div class="results-section">
+            <h3>General Secretary</h3>
+            {% for result in gensec_results %}
+            <div class="result-row">
+                <span class="result-row__name">
+                    {{ result.candidate.name }}
+                    {% if result.is_winner %}<span class="result-row__winner">Winner</span>{% endif %}
+                </span>
+                <span class="result-row__votes">{{ result.displayed_vote_count }} votes</span>
+            </div>
+            {% empty %}
+            <p>No results available.</p>
+            {% endfor %}
+        </div>
     </div>
-    {% empty %}
-    <p>No results available.</p>
-    {% endfor %}
-</section>
+</div>
 {% endblock %}

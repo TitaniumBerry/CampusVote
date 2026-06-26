@@ -2,7 +2,9 @@
 {% block title %}Already Voted — CampusVote{% endblock %}
 
 {% block content %}
-<h1>You have already voted</h1>
-<p>Your vote has been recorded. You cannot vote again.</p>
-<a href="{% url 'results' %}">View Results</a>
+<div class="card state-page">
+    <h1>You've already voted</h1>
+    <p>Your vote has been recorded. Each student may only vote once.</p>
+    <a href="{% url 'results' %}">View results</a>
+</div>
 {% endblock %}

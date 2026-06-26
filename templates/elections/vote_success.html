@@ -2,7 +2,9 @@
 {% block title %}Vote Cast — CampusVote{% endblock %}
 
 {% block content %}
-<h1>Thank you for voting!</h1>
-<p>Your vote has been recorded successfully.</p>
-<a href="{% url 'results' %}">View Results</a>
+<div class="card state-page">
+    <h1>Vote recorded</h1>
+    <p>Your vote has been cast successfully. Thank you for participating.</p>
+    <a href="{% url 'results' %}">View results</a>
+</div>
 {% endblock %}

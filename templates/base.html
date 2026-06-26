@@ -1,11 +1,16 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CampusVote</title>
+    <title>{% block title %}CampusVote{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
 </head>
 <body>
+
+{% block page %}
+<div class="page">
     {% if messages %}
         <ul class="messages">
             {% for message in messages %}
@@ -13,8 +18,10 @@
             {% endfor %}
         </ul>
     {% endif %}
- 
+
     {% block content %}{% endblock %}
+</div>
+{% endblock %}
 
 </body>
 </html>

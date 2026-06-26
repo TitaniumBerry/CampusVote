@@ -2,34 +2,36 @@
 {% block title %}Login — CampusVote{% endblock %}
 
 {% block content %}
-<h1>Welcome Back</h1>
-<p>Login with your BITS Pilani email</p>
+<div class="card">
+    <h1 class="card__title">Welcome back</h1>
+    <p class="card__subtitle">Login with your BITS Pilani email</p>
 
-<form method="post">
-    {% csrf_token %}
+    <form method="post">
+        {% csrf_token %}
 
-    <div>
-        <label for="{{ form.email.id_for_label }}">Email</label>
-        {{ form.email }}
-        {{ form.email.errors }}
-    </div>
+        <div>
+            <label for="{{ form.email.id_for_label }}">Email</label>
+            {{ form.email }}
+            {{ form.email.errors }}
+        </div>
 
-    <div>
-        <label for="{{ form.password.id_for_label }}">Password</label>
-        {{ form.password }}
-        {{ form.password.errors }}
-    </div>
+        <div>
+            <label for="{{ form.password.id_for_label }}">Password</label>
+            {{ form.password }}
+            {{ form.password.errors }}
+        </div>
 
-    {% if form.non_field_errors %}
-        <ul>
-            {% for error in form.non_field_errors %}
-                <li>{{ error }}</li>
-            {% endfor %}
-        </ul>
-    {% endif %}
+        {% if form.non_field_errors %}
+            <ul>
+                {% for error in form.non_field_errors %}
+                    <li>{{ error }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
 
-    <button type="submit">Login</button>
-</form>
+        <button type="submit">Login</button>
+    </form>
 
-<p>Don't have an account? <a href="{% url 'register' %}">Register</a></p>
+    <p class="footer-link">Don't have an account? <a href="{% url 'register' %}">Register</a></p>
+</div>
 {% endblock %}

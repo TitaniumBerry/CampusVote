@@ -2,10 +2,12 @@
 {% block title %}Results Pending — CampusVote{% endblock %}
 
 {% block content %}
-<h1>Results Not Yet Published</h1>
-{% if closed %}
-<p>Voting has ended. Results will be published soon.</p>
-{% else %}
-<p>No election results are available at this time.</p>
-{% endif %}
+<div class="card state-page">
+    <h1>Results pending</h1>
+    {% if closed %}
+    <p>Voting has ended. Results will be published shortly.</p>
+    {% else %}
+    <p>No election results are available at this time.</p>
+    {% endif %}
+</div>
 {% endblock %}

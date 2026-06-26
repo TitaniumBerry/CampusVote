@@ -1,45 +1,63 @@
 {% extends "base.html" %}
 {% block title %}Vote — CampusVote{% endblock %}
 
-{% block content %}
-<h1>{{ election.title }}</h1>
-<p>Cast your vote for each position below.</p>
-
-<form method="post" action="{% url 'vote_confirm' %}">
-    {% csrf_token %}
-
-    {% if not has_voted_president %}
-    <section>
-        <h2>President</h2>
-        {% for candidate in president_candidates %}
-        <div>
-            <input type="radio" name="president" id="pres_{{ candidate.id }}" value="{{ candidate.id }}" required>
-            <label for="pres_{{ candidate.id }}">{{ candidate.name }}</label>
-        </div>
-        {% empty %}
-        <p>No candidates available for this position.</p>
-        {% endfor %}
-    </section>
-    {% else %}
-    <p>You have already voted for President.</p>
+{% block page %}
+<div class="page page--wide">
+    {% if messages %}
+        <ul class="messages" style="max-width:680px;">
+            {% for message in messages %}
+                <li class="{{ message.tags }}">{{ message }}</li>
+            {% endfor %}
+        </ul>
     {% endif %}
 
-    {% if not has_voted_gensec %}
-    <section>
-        <h2>General Secretary</h2>
-        {% for candidate in gensec_candidates %}
-        <div>
-            <input type="radio" name="gensec" id="gensec_{{ candidate.id }}" value="{{ candidate.id }}" required>
-            <label for="gensec_{{ candidate.id }}">{{ candidate.name }}</label>
-        </div>
-        {% empty %}
-        <p>No candidates available for this position.</p>
-        {% endfor %}
-    </section>
-    {% else %}
-    <p>You have already voted for General Secretary.</p>
-    {% endif %}
+    <div class="card card--wide">
+        <h1 class="card__title">{{ election.title }}</h1>
+        <p class="card__subtitle">Cast your vote for each position below.</p>
 
-    <button type="submit">Review My Vote</button>
-</form>
+        <hr class="divider">
+
+        <form method="post" action="{% url 'vote_confirm' %}">
+            {% csrf_token %}
+
+            {% if not has_voted_president %}
+            <div class="vote-section">
+                <h2>President</h2>
+                <div class="candidates">
+                    {% for candidate in president_candidates %}
+                    <div class="candidate-card">
+                        <input type="radio" name="president" id="pres_{{ candidate.id }}" value="{{ candidate.id }}" required>
+                        <label for="pres_{{ candidate.id }}">{{ candidate.name }}</label>
+                    </div>
+                    {% empty %}
+                    <p>No candidates available for this position.</p>
+                    {% endfor %}
+                </div>
+            </div>
+            {% else %}
+            <p class="voted-note">You have already voted for President.</p>
+            {% endif %}
+
+            {% if not has_voted_gensec %}
+            <div class="vote-section">
+                <h2>General Secretary</h2>
+                <div class="candidates">
+                    {% for candidate in gensec_candidates %}
+                    <div class="candidate-card">
+                        <input type="radio" name="gensec" id="gensec_{{ candidate.id }}" value="{{ candidate.id }}" required>
+                        <label for="gensec_{{ candidate.id }}">{{ candidate.name }}</label>
+                    </div>
+                    {% empty %}
+                    <p>No candidates available for this position.</p>
+                    {% endfor %}
+                </div>
+            </div>
+            {% else %}
+            <p class="voted-note">You have already voted for General Secretary.</p>
+            {% endif %}
+
+            <button type="submit">Review my vote</button>
+        </form>
+    </div>
+</div>
 {% endblock %}

@@ -1,7 +1,9 @@
 {% extends "base.html" %}
 {% block title %}Page Not Found — CampusVote{% endblock %}
 {% block content %}
-<h1>404 — Page Not Found</h1>
-<p>The page you're looking for doesn't exist.</p>
-<a href="{% url 'vote' %}">Go back home</a>
+<div class="card state-page">
+    <h1>404</h1>
+    <p>The page you're looking for doesn't exist.</p>
+    <a href="{% url 'vote' %}">Go home</a>
+</div>
 {% endblock %}
